@@ -8,6 +8,8 @@ target '14thWeek' do
 pod 'SwiftLint'
 pod "TinyConstraints"
 pod 'MobilliumBuilders'
+pod 'Alamofire', '~> 5.4'
+pod 'Kingfisher', '~> 6.3.1'
 
   # Pods for 14thWeek
 

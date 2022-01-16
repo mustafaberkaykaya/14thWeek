@@ -1,24 +1,32 @@
 PODS:
+  - Alamofire (5.5.0)
+  - Kingfisher (6.3.1)
   - MobilliumBuilders (1.4.0)
   - SwiftLint (0.45.1)
   - TinyConstraints (4.0.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.4)
+  - Kingfisher (~> 6.3.1)
   - MobilliumBuilders
   - SwiftLint
   - TinyConstraints
 
 SPEC REPOS:
   trunk:
+    - Alamofire
+    - Kingfisher
     - MobilliumBuilders
     - SwiftLint
     - TinyConstraints
 
 SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   MobilliumBuilders: 9990948aea3e132044431289dda869f524fcadac
   SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
   TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
 
-PODFILE CHECKSUM: 3b5e1ed37f2b1ca88530c45939a518a94660daac
+PODFILE CHECKSUM: 0d64b450a69b2db13c7b31d794b1d9bcadc65d38
 
 COCOAPODS: 1.11.2

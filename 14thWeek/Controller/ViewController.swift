@@ -17,7 +17,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         addSubViews()
-       
+        
+        let service = Service(baseUrl: "https://aws.random.cat/meow")
+        print(service.getPhoto())
+        
     }
     
 }
