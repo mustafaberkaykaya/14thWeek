@@ -1,0 +1,24 @@
+PODS:
+  - MobilliumBuilders (1.4.0)
+  - SwiftLint (0.45.1)
+  - TinyConstraints (4.0.2)
+
+DEPENDENCIES:
+  - MobilliumBuilders
+  - SwiftLint
+  - TinyConstraints
+
+SPEC REPOS:
+  trunk:
+    - MobilliumBuilders
+    - SwiftLint
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  MobilliumBuilders: 9990948aea3e132044431289dda869f524fcadac
+  SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
+  TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
+
+PODFILE CHECKSUM: 3b5e1ed37f2b1ca88530c45939a518a94660daac
+
+COCOAPODS: 1.11.2
