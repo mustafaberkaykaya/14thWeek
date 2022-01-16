@@ -12,12 +12,10 @@ import TinyConstraints
 class ViewController: UIViewController {
 
     private let tableView = UITableViewBuilder().build()
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-       
         addSubViews()
        
     }
@@ -27,6 +25,7 @@ class ViewController: UIViewController {
 extension ViewController {
     private func addSubViews() {
         addTableView()
+       
     }
     
     private func addTableView() {
@@ -34,8 +33,10 @@ extension ViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.edgesToSuperview(usingSafeArea: true)
-  
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "customCell")
+       
     }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -44,9 +45,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableViewCell = UITableViewCell()
-        tableViewCell.backgroundColor = .red
-        return tableViewCell
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? CustomTableViewCell {
+            return cell
+        }
+        
+        return UITableViewCell()
+        
     }
-    
+
 }
