@@ -24,8 +24,6 @@ class CustomTableViewCell: UITableViewCell {
     }
     // swiftlint:enable all
     
-
-    
     func setImageViewConstraints() {
         myImageView.topToSuperview()
         myImageView.leadingToSuperview()

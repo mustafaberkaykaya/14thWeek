@@ -21,60 +21,58 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for _ in 1...5 {
-            let service = Service(baseUrl: "https://aws.random.cat/meow")
-            service.getCatPhoto()  
-            service.completionHandlerCat { [weak self] (photo, status, message) in
-                if status {
-                   guard let self = self else { return }
-                    guard let gelenphoto = photo else { return }
-                    self.photoCat = gelenphoto
-                   // print(self.photo?.file)
-                    
-                    if let data = photo?.file as? String {
-                        self.photoUrls.append(data)
-                        DispatchQueue.main.async {
+        DispatchQueue.global().async {
+            for _ in 1...5 {
+                let service = Service(baseUrl: "https://aws.random.cat/meow")
+                service.getCatPhoto()
+                service.completionHandlerCat { [weak self] (photo, status, _) in
+                    if status {
+                       guard let self = self else { return }
+                        guard let gelenphoto = photo else { return }
+                        self.photoCat = gelenphoto
+                        
+                        if let data = photo?.file as String? {
+                            self.photoUrls.append(data)
+                            DispatchQueue.main.async {
                             self.tableView.reloadData()
+                            }
                         }
-                      
                     }
-                    
                 }
             }
         }
         
-        for _ in 1...5 {
-            let service = Service(baseUrl: "https://random.dog/woof.json")
-            service.getDogPhoto()
-            service.completionHandlerDog { [weak self] (photo, status, message) in
-                if status {
-                   guard let self = self else { return }
-                    guard let gelenphoto = photo else { return }
-                    self.photoDog = gelenphoto
-                   // print(self.photo?.file)
-                    
-                    if let data = photo?.url as? String {
-                        self.photoUrls.append(data)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
+        DispatchQueue.global().async {
+            for _ in 1...5 {
+                let service = Service(baseUrl: "https://random.dog/woof.json")
+                service.getDogPhoto()
+                service.completionHandlerDog { [weak self] (photo, status, _) in
+                    if status {
+                       guard let self = self else { return }
+                        guard let gelenphoto = photo else { return }
+                        self.photoDog = gelenphoto
+                        
+                        if let data = photo?.url as String? {
+                            self.photoUrls.append(data)
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
                         }
-                      
                     }
-                    
                 }
             }
         }
         
+
         addSubViews()
-    
     }
     
 }
 
 extension ViewController {
+    
     private func addSubViews() {
         addTableView()
-       
     }
     
     private func addTableView() {
@@ -85,7 +83,6 @@ extension ViewController {
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "customCell")
        
     }
-    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -98,7 +95,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? CustomTableViewCell {
-            cell.myImageView.kf.setImage(with: URL(string: photoUrls[indexPath.row]))
+            DispatchQueue.main.async {
+                cell.myImageView.kf.setImage(with: URL(string: self.photoUrls[indexPath.row]))
+            }
             return cell
         }
         
