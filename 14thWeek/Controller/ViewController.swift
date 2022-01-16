@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addSubViews()
+        
         DispatchQueue.global().async {
             for _ in 1...5 {
                 let service = Service(baseUrl: "https://aws.random.cat/meow")
@@ -28,10 +30,9 @@ class ViewController: UIViewController {
                 service.completionHandlerCat { [weak self] (photo, status, _) in
                     if status {
                        guard let self = self else { return }
-                        guard let gelenphoto = photo else { return }
-                        self.photoCat = gelenphoto
-                        
-                        if let data = photo?.file as String? {
+                       guard let gelenphoto = photo else { return }
+                       self.photoCat = gelenphoto
+                       if let data = photo?.file as String? {
                             self.photoUrls.append(data)
                             DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -48,10 +49,9 @@ class ViewController: UIViewController {
                 service.getDogPhoto()
                 service.completionHandlerDog { [weak self] (photo, status, _) in
                     if status {
-                       guard let self = self else { return }
+                        guard let self = self else { return }
                         guard let gelenphoto = photo else { return }
                         self.photoDog = gelenphoto
-                        
                         if let data = photo?.url as String? {
                             self.photoUrls.append(data)
                             DispatchQueue.main.async {
@@ -62,11 +62,7 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
-
-        addSubViews()
     }
-    
 }
 
 extension ViewController {
@@ -81,32 +77,26 @@ extension ViewController {
         tableView.dataSource = self
         tableView.edgesToSuperview(usingSafeArea: true)
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "customCell")
-       
     }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(photoUrls.count)
         return photoUrls.count
-
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? CustomTableViewCell {
             DispatchQueue.main.async {
                 cell.myImageView.kf.setImage(with: URL(string: self.photoUrls[indexPath.row]))
             }
             return cell
         }
-        
         return UITableViewCell()
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
-    
 }

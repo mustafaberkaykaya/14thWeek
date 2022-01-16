@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct DogPhoto: Decodable {
     var url: String
 }

@@ -14,8 +14,8 @@ class CustomTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         addSubview(myImageView)
-    
         setImageViewConstraints()
     }
     // swiftlint:disable all
@@ -23,12 +23,10 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     // swiftlint:enable all
-    
     func setImageViewConstraints() {
         myImageView.topToSuperview()
         myImageView.leadingToSuperview()
         myImageView.trailingToSuperview()
         myImageView.bottomToSuperview().constant = -5
     }
-    
 }

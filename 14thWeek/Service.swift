@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 class Service {
-    
     fileprivate var baseUrl = ""
     
     typealias CatPhotosCallBack = (_ photos: CatPhoto?, _ status: Bool, _ message: String) -> Void
@@ -32,7 +31,7 @@ class Service {
                 self.callBackCat?(nil, false, error.localizedDescription)
             }
         }
-}
+    }
     
     func getDogPhoto() {
         AF.request(self.baseUrl, method: .get).response { responseData in
@@ -44,7 +43,8 @@ class Service {
                 self.callBackDog?(nil, false, error.localizedDescription)
             }
         }
-}
+    }
+    
     func completionHandlerCat(callBack: @escaping CatPhotosCallBack) {
         self.callBackCat = callBack
     }
@@ -52,5 +52,4 @@ class Service {
     func completionHandlerDog(callBack: @escaping DogPhotosCallBack) {
         self.callBackDog = callBack
     }
-    
 }

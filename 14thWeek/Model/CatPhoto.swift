@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct CatPhoto: Decodable {
     var file: String
 }
