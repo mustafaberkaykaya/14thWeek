@@ -15,8 +15,7 @@ class CustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(myImageView)
-        
-        configureImageView()
+    
         setImageViewConstraints()
     }
     // swiftlint:disable all
@@ -25,9 +24,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     // swiftlint:enable all
     
-    func configureImageView() {
-        myImageView.backgroundColor = .blue
-    }
+
     
     func setImageViewConstraints() {
         myImageView.topToSuperview()
